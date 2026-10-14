@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayush Kumar | Futuristic Portfolio & AI Dev</title>
+  <meta name="description" content="Portfolio of Ayush Kumar - 1st Year B.Tech CSE Student at JECRC, exploring C/C++, Web Dev, and Next-Gen AI Toolbases.">
+  
+  <!-- Google Fonts for Futuristic Cyberpunk / Tech Aesthetics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="cyber-theme">
+
+  <!-- Interactive Matrix & Neural Synapse Canvas -->
+  <canvas id="neural-canvas"></canvas>
+
+  <!-- Ambient Hologram Scanlines & Cyber Vignette -->
+  <div class="cyber-scanlines" aria-hidden="true"></div>
+  <div class="cyber-glow-orb orb-1" aria-hidden="true"></div>
+  <div class="cyber-glow-orb orb-2" aria-hidden="true"></div>
+
+  <!-- Audio SFX Toggle & Top HUD Status Bar -->
+  <header class="cyber-header" id="cyber-header">
+    <div class="header-container">
+      <div class="cyber-logo" onclick="navigateToSection(0)">
+        <div class="logo-chip">
+          <i class="fa-solid fa-microchip"></i>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">AYUSH<span class="highlight">.AI</span></span>
+          <span class="logo-sub">SYSTEM CORE // JECRC CSE '28</span>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <button class="nav-item active" onclick="navigateToSection(0)" data-index="0">
+          <span class="nav-num">01</span><span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" onclick="navigateToSection(1)" data-index="1">
+          <span class="nav-num">02</span><span class="nav-label">About</span>
+        </button>
+        <button class="nav-item" onclick="navigateToSection(2)" data-index="2">
+          <span class="nav-num">03</span><span class="nav-label">Education</span>
+        </button>
+        <button class="nav-item" onclick="navigateToSection(3)" data-index="3">
+          <span class="nav-num">04</span><span class="nav-label">Skills</span>
+        </button>
+        <button class="nav-item" onclick="navigateToSection(4)" data-index="4">
+          <span class="nav-num">05</span><span class="nav-label">Achievements</span>
+        </button>
+        <button class="nav-item" onclick="navigateToSection(5)" data-index="5">
+          <span class="nav-num">06</span><span class="nav-label">Contact</span>
+        </button>
+      </nav>
+
+      <!-- Top Right Utility & Social Actions -->
+      <div class="header-actions">
+        <!-- Audio Synth SFX Toggle -->
+        <button id="audio-toggle-btn" class="hud-btn" title="Toggle Sci-Fi SFX" aria-label="Toggle Sci-Fi SFX">
+          <i class="fa-solid fa-volume-high"></i>
+          <span class="btn-text">SFX: ON</span>
+        </button>
+
+        <!-- Social Links Direct -->
+        <a href="https://github.com/0008ayushkumar" target="_blank" rel="noopener noreferrer" class="social-hud-btn" title="GitHub Profile" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ayush-kumar-44a764350/" target="_blank" rel="noopener noreferrer" class="social-hud-btn" title="LinkedIn Profile" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobile-toggle-btn" class="mobile-burger-btn" aria-label="Open Navigation Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Nav Menu -->
+  <div id="mobile-menu-drawer" class="mobile-menu-drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">NAV // TERMINAL</span>
+      <button id="close-drawer-btn" class="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <button class="drawer-link active" onclick="navigateToSection(0)">01 // Home</button>
+      <button class="drawer-link" onclick="navigateToSection(1)">02 // About Me</button>
+      <button class="drawer-link" onclick="navigateToSection(2)">03 // Education</button>
+      <button class="drawer-link" onclick="navigateToSection(3)">04 // Skills</button>
+      <button class="drawer-link" onclick="navigateToSection(4)">05 // Achievements</button>
+      <button class="drawer-link" onclick="navigateToSection(5)">06 // Contact</button>
+    </div>
+    <div class="drawer-socials">
+      <a href="https://github.com/0008ayushkumar" target="_blank" class="drawer-social"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/ayush-kumar-44a764350/" target="_blank" class="drawer-social"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE VERTICAL SECTION DISPLAY BAR (With Car Track Indicator) -->
+  <aside class="vertical-section-bar" id="vertical-nav-bar" aria-label="Section Navigation Bar">
+    <div class="vert-rail-track">
+      <!-- Cyber Car indicator sliding up & down on the rail -->
+      <div class="vert-car-slider" id="vert-car-slider" title="Active Page Vehicle">
+        <svg class="mini-cyber-car-icon" viewBox="0 0 40 24" fill="none">
+          <path d="M4 14L8 6C9 4 11 3 14 3H26C29 3 31 4 32 6L36 14H39C39.6 14 40 14.4 40 15V17C40 17.6 39.6 18 39 18H36.8C36.4 20.3 34.4 22 32 22C29.6 22 27.6 20.3 27.2 18H12.8C12.4 20.3 10.4 22 8 22C5.6 22 3.6 20.3 3.2 18H1C0.4 18 0 17.6 0 17V15C0 14.4 0.4 14 1 14H4Z" fill="url(#carGlowGrad)"/>
+          <circle cx="8" cy="18" r="3.2" fill="#00f3ff"/>
+          <circle cx="32" cy="18" r="3.2" fill="#00f3ff"/>
+          <path d="M10 13L13 7H20V13H10Z" fill="#070a12" fill-opacity="0.8"/>
+          <path d="M22 7H27L29.5 13H22V7Z" fill="#070a12" fill-opacity="0.8"/>
+          <!-- Nitro back thrust -->
+          <line x1="0" y1="16" x2="-6" y2="16" stroke="#ff0055" stroke-width="2.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="carGlowGrad" x1="0" y1="3" x2="40" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00f3ff"/>
+              <stop offset="0.5" stop-color="#b026ff"/>
+              <stop offset="1" stop-color="#00ff9d"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="vert-rail-glow" id="vert-rail-glow"></div>
+    </div>
+
+    <div class="vert-nodes-list">
+      <div class="vert-node active" onclick="navigateToSection(0)" data-index="0">
+        <span class="node-bullet"><i class="fa-solid fa-house"></i></span>
+        <div class="node-tooltip">
+          <span class="tip-code">SYS::01</span>
+          <span class="tip-title">Home Base</span>
+        </div>
+      </div>
+      <div class="vert-node" onclick="navigateToSection(1)" data-index="1">
+        <span class="node-bullet"><i class="fa-solid fa-user-astronaut"></i></span>
+        <div class="node-tooltip">
+          <span class="tip-code">SYS::02</span>
+          <span class="tip-title">About Me</span>
+        </div>
+      </div>
+      <div class="vert-node" onclick="navigateToSection(2)" data-index="2">
+        <span class="node-bullet"><i class="fa-solid fa-graduation-cap"></i></span>
+        <div class="node-tooltip">
+          <span class="tip-code">SYS::03</span>
+          <span class="tip-title">Education</span>
+        </div>
+      </div>
+      <div class="vert-node" onclick="navigateToSection(3)" data-index="3">
+        <span class="node-bullet"><i class="fa-solid fa-microchip"></i></span>
+        <div class="node-tooltip">
+          <span class="tip-code">SYS::04</span>
+          <span class="tip-title">Skills Matrix</span>
+        </div>
+      </div>
+      <div class="vert-node" onclick="navigateToSection(4)" data-index="4">
+        <span class="node-bullet"><i class="fa-solid fa-award"></i></span>
+        <div class="node-tooltip">
+          <span class="tip-code">SYS::05</span>
+          <span class="tip-title">Certifications</span>
+        </div>
+      </div>
+      <div class="vert-node" onclick="navigateToSection(5)" data-index="5">
+        <span class="node-bullet"><i class="fa-solid fa-paper-plane"></i></span>
+        <div class="node-tooltip">
+          <span class="tip-code">SYS::06</span>
+          <span class="tip-title">Contact Node</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active telemetry footer -->
+    <div class="vert-telemetry">
+      <span class="tele-val" id="tele-sec-num">01</span>
+      <span class="tele-total">/ 06</span>
+    </div>
+  </aside>
+
+  <!-- ===============================================================
+       FULL CAR TRANSITION OVERLAY WITH SPEEDOMETER & AI TOOL TRANSISTORS
+       =============================================================== -->
+  <div id="car-transition-overlay" class="car-transition-overlay" aria-hidden="true">
+    <!-- Nitro Speed Warp Lines -->
+    <div class="warp-lines-container">
+      <div class="warp-line w-1"></div>
+      <div class="warp-line w-2"></div>
+      <div class="warp-line w-3"></div>
+      <div class="warp-line w-4"></div>
+      <div class="warp-line w-5"></div>
+      <div class="warp-line w-6"></div>
+      <div class="warp-line w-7"></div>
+    </div>
+
+    <!-- Floating AI Toolbase Transistors / Holographic Chips in Motion -->
+    <div class="ai-toolbase-transistors">
+      <div class="transistor-chip chip-openai">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="ai-svg-icon"><path d="M22.28 9.87c-.17-.89-.59-1.7-1.22-2.34-.87-.87-2.03-1.37-3.26-1.39-.23 0-.46.02-.69.06-.55-.74-1.29-1.31-2.16-1.66-1.18-.47-2.48-.47-3.66 0-.82.33-1.54.87-2.08 1.56-.63-.26-1.32-.38-2.01-.35-1.23.05-2.4.6-3.23 1.51-.83.91-1.25 2.12-1.16 3.35.05.71.28 1.4.67 2-.51.72-.78 1.58-.78 2.47 0 1.23.51 2.41 1.41 3.25.9 1.13 2.27 1.8 3.73 1.84.22 0 .44-.02.66-.05.54.71 1.27 1.27 2.12 1.61 1.19.48 2.51.48 3.7 0 .82-.33 1.53-.87 2.06-1.56.63.26 1.32.38 2.02.35 1.23-.05 2.4-.6 3.23-1.51.83-.91 1.25-2.12 1.16-3.35-.05-.71-.28-1.4-.67-2 .51-.73.78-1.59.78-2.48 0-1.07-.39-2.11-1.1-2.92z"/></svg>
+        <span>OPENAI CORE</span>
+      </div>
+
+      <div class="transistor-chip chip-claude">
+        <i class="fa-solid fa-brain"></i>
+        <span>CLAUDE 3.5</span>
+      </div>
+
+      <div class="transistor-chip chip-copilot">
+        <i class="fa-solid fa-robot"></i>
+        <span>COPILOT AI</span>
+      </div>
+
+      <div class="transistor-chip chip-cursor">
+        <i class="fa-solid fa-terminal"></i>
+        <span>CURSOR ENGINE</span>
+      </div>
+
+      <div class="transistor-chip chip-cpp">
+        <i class="fa-solid fa-code"></i>
+        <span>C / C++ SILICON</span>
+      </div>
+
+      <div class="transistor-chip chip-git">
+        <i class="fa-brands fa-git-alt"></i>
+        <span>GIT REPO BUS</span>
+      </div>
+    </div>
+
+    <!-- HUD Telemetry Display during transition -->
+    <div class="transition-hud">
+      <div class="hud-speed-gauge">
+        <span class="hud-label">WARP VELOCITY</span>
+        <span class="hud-speed-num" id="hud-speed-val">420</span>
+        <span class="hud-unit">KM / H</span>
+      </div>
+      <div class="hud-status-banner">
+        <span class="hud-blink-dot"></span>
+        <span class="hud-target-name" id="hud-target-sec">SWITCHING SECTORS...</span>
+      </div>
+    </div>
+
+    <!-- The Cyberpunk Racing Hypercar -->
+    <div class="cyber-hypercar" id="cyber-hypercar">
+      <div class="car-body-wrapper">
+        <!-- Dual Nitro Plasma Exhaust Jets -->
+        <div class="plasma-exhaust top-jet">
+          <div class="flame-core"></div>
+          <div class="flame-trail"></div>
+        </div>
+        <div class="plasma-exhaust bot-jet">
+          <div class="flame-core"></div>
+          <div class="flame-trail"></div>
+        </div>
+
+        <!-- High-tech Vector Cyber Car -->
+        <svg class="hypercar-svg" viewBox="0 0 320 120" fill="none">
+          <!-- Laser Headlight Beam forward -->
+          <polygon points="275,55 460,30 460,85 275,70" fill="url(#laserBeamGrad)" opacity="0.45"/>
+          
+          <!-- Shadow & Underglow ground glow -->
+          <ellipse cx="160" cy="98" rx="130" ry="14" fill="#00f3ff" opacity="0.7" filter="blur(6px)"/>
+          
+          <!-- Aerodynamic Chassis Silhouette -->
+          <path d="M20 70 L50 35 L120 20 L210 22 L270 45 L300 70 L305 78 L290 85 L260 85 C255 72 235 72 230 85 L95 85 C90 72 70 72 65 85 L25 85 L15 78 Z" fill="#0b0f19" stroke="#00f3ff" stroke-width="3"/>
+          
+          <!-- Holographic Racing Livery / Cyber Decals -->
+          <path d="M55 40 L115 28 L200 30 L255 48" stroke="#b026ff" stroke-width="2.5" stroke-dasharray="8 4"/>
+          <path d="M80 50 L160 42 L240 55" stroke="#00ff9d" stroke-width="2"/>
+          
+          <!-- Cockpit / Futuristic Tinted Canopy -->
+          <polygon points="115,26 195,28 235,46 135,46" fill="#00f3ff" fill-opacity="0.25" stroke="#00f3ff" stroke-width="1.8"/>
+          
+          <!-- Headlight Laser Unit -->
+          <circle cx="295" cy="62" r="5" fill="#ffffff" filter="drop-shadow(0 0 8px #00f3ff)"/>
+          
+          <!-- Cyber Wheel 1 (Rear) -->
+          <g class="wheel rear-wheel">
+            <circle cx="80" cy="85" r="20" fill="#070a12" stroke="#00f3ff" stroke-width="3.5"/>
+            <circle cx="80" cy="85" r="13" fill="#141a29" stroke="#ff0055" stroke-width="2"/>
+            <circle cx="80" cy="85" r="5" fill="#00f3ff"/>
+            <line x1="80" y1="65" x2="80" y2="105" stroke="#00f3ff" stroke-width="2" class="spoke"/>
+            <line x1="60" y1="85" x2="100" y2="85" stroke="#00f3ff" stroke-width="2" class="spoke"/>
+          </g>
+
+          <!-- Cyber Wheel 2 (Front) -->
+          <g class="wheel front-wheel">
+            <circle cx="245" cy="85" r="20" fill="#070a12" stroke="#00f3ff" stroke-width="3.5"/>
+            <circle cx="245" cy="85" r="13" fill="#141a29" stroke="#ff0055" stroke-width="2"/>
+            <circle cx="245" cy="85" r="5" fill="#00f3ff"/>
+            <line x1="245" y1="65" x2="245" y2="105" stroke="#00f3ff" stroke-width="2" class="spoke"/>
+            <line x1="225" y1="85" x2="265" y2="85" stroke="#00f3ff" stroke-width="2" class="spoke"/>
+          </g>
+
+          <defs>
+            <linearGradient id="laserBeamGrad" x1="275" y1="60" x2="460" y2="60" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00f3ff" stop-opacity="0.9"/>
+              <stop offset="0.6" stop-color="#00f3ff" stop-opacity="0.3"/>
+              <stop offset="1" stop-color="#00f3ff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===============================================================
+       MAIN PAGE CONTAINER (SECTIONS 01 TO 06)
+       =============================================================== -->
+  <main class="pages-wrapper" id="pages-wrapper">
+
+    <!-- ==================== SECTION 01: HOME ==================== -->
+    <section class="page-section section-home active" id="sec-home" data-index="0">
+      <div class="cyber-container home-layout">
+        
+        <!-- Left / Upper Column: Profile, HUD Avatar, & Name -->
+        <div class="home-hero">
+          
+          <!-- Futuristic Hologram Avatar Frame -->
+          <div class="avatar-holo-wrapper">
+            <div class="holo-ring-outer"></div>
+            <div class="holo-ring-inner"></div>
+            <div class="holo-scan-line"></div>
+            <div class="avatar-frame">
+              <!-- High-tech Profile Representation with SVG & Automatic User Photo Support -->
+              <div class="avatar-cyber-visual">
+                <img src="profile.jpg" alt="Ayush Kumar" id="user-profile-img" onerror="this.style.display='none'; const fb = document.getElementById('svg-avatar-fallback'); if(fb) fb.style.display='block';" onload="this.style.display='block'; const fb = document.getElementById('svg-avatar-fallback'); if(fb) fb.style.display='none';" style="display:none; width:100%; height:100%; object-fit:cover; border-radius: 50%;">
+                <svg id="svg-avatar-fallback" viewBox="0 0 160 160" class="cyber-avatar-svg">
+                  <defs>
+                    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00f3ff"/>
+                      <stop offset="50%" stop-color="#7928ca"/>
+                      <stop offset="100%" stop-color="#ff0080"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="80" cy="80" r="70" fill="#0b0f19" stroke="url(#avatarGrad)" stroke-width="3"/>
+                  <!-- Futuristic stylized developer silhouette -->
+                  <circle cx="80" cy="60" r="26" fill="#182234" stroke="#00f3ff" stroke-width="2"/>
+                  <!-- Cyber Visor / Glasses -->
+                  <rect x="62" y="54" width="36" height="10" rx="3" fill="#00f3ff" filter="drop-shadow(0 0 6px #00f3ff)"/>
+                  <path d="M42 124 C45 96 60 88 80 88 C100 88 115 96 118 124 Z" fill="#131c2b" stroke="#7928ca" stroke-width="2"/>
+                  <!-- Circuit nodes on chest -->
+                  <circle cx="80" cy="102" r="3" fill="#00ff9d"/>
+                  <line x1="72" y1="102" x2="88" y2="102" stroke="#00ff9d" stroke-width="1.5"/>
+                  <line x1="80" y1="102" x2="80" y2="114" stroke="#00ff9d" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="avatar-badge">
+                <span class="live-dot"></span>
+                <span>AI BUILDER</span>
+              </div>
+            </div>
+            <!-- Surrounding Floating Mini Badges -->
+            <div class="orbit-tag tag-cse"><i class="fa-solid fa-code"></i> CSE '28</div>
+            <div class="orbit-tag tag-jecrc"><i class="fa-solid fa-building-columns"></i> JECRC</div>
+          </div>
+
+          <!-- Hero Name & Title -->
+          <div class="hero-text-content">
+            <div class="hud-badge-small">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>INITIALIZING PORTFOLIO PROTOCOL // V2.5</span>
+            </div>
+            
+            <h1 class="hero-name">
+              AYUSH <span class="gradient-text">KUMAR</span>
+            </h1>
+
+            <div class="dynamic-typing-box">
+              <span class="code-bracket">&gt;</span>
+              <span id="dynamic-typewriter" class="typewriter-text"></span>
+              <span class="cursor-blink">_</span>
+            </div>
+
+            <!-- Polished Bio description based on User Input -->
+            <p class="hero-bio-lead">
+              I love figuring out how things work <span class="text-glow">behind the scenes</span> — from low-level code and algorithms to the next-generation AI tools shaping our future. Currently building, breaking, and engineering one project at a time.
+            </p>
+
+            <!-- Social Links Quick Bar -->
+            <div class="hero-social-pills">
+              <a href="https://github.com/0008ayushkumar" target="_blank" rel="noopener noreferrer" class="social-pill github">
+                <i class="fa-brands fa-github"></i>
+                <span>github.com/0008ayushkumar</span>
+                <i class="fa-solid fa-arrow-up-right-from-square pill-arrow"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ayush-kumar-44a764350/" target="_blank" rel="noopener noreferrer" class="social-pill linkedin">
+                <i class="fa-brands fa-linkedin-in"></i>
+                <span>linkedin.com/in/ayush-kumar</span>
+                <i class="fa-solid fa-arrow-up-right-from-square pill-arrow"></i>
+              </a>
+            </div>
+
+            <!-- TWO SMALL DIRECT SWITCH BOXES IN THE MIDDLE AS REQUESTED -->
+            <div class="quick-switch-container">
+              <div class="quick-switch-box cert-switch" onclick="navigateToSection(4)">
+                <div class="switch-glow"></div>
+                <div class="switch-icon">
+                  <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div class="switch-content">
+                  <span class="switch-tag">DIRECT SWITCH // 05</span>
+                  <h3 class="switch-title">View Certificates &amp; Milestones</h3>
+                  <p class="switch-desc">District level sports &amp; CBSE academic records</p>
+                </div>
+                <div class="switch-action-icon">
+                  <i class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+
+              <div class="quick-switch-box contact-switch" onclick="navigateToSection(5)">
+                <div class="switch-glow"></div>
+                <div class="switch-icon">
+                  <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="switch-content">
+                  <span class="switch-tag">DIRECT SWITCH // 06</span>
+                  <h3 class="switch-title">Contact Me Directly</h3>
+                  <p class="switch-desc">Instant signal via Gmail, Phone or Form</p>
+                </div>
+                <div class="switch-action-icon">
+                  <i class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- BOTTOM MID: DEDICATED CHATBOT INTEGRATION SPACE -->
+        <div class="home-bottom-chatbot-dock" id="home-chatbot-dock">
+          <div class="chatbot-dock-card" onclick="openChatbotModal()">
+            <div class="dock-pulse-indicator">
+              <span class="pulse-ring"></span>
+              <span class="pulse-core"></span>
+            </div>
+            <div class="dock-avatar">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div class="dock-info">
+              <div class="dock-header-row">
+                <span class="dock-title">A.Y.U.S.H. CORE // AI COPILOT</span>
+                <span class="dock-chip">NEURAL READY</span>
+              </div>
+              <p class="dock-prompt">Click to ask questions about Ayush's skills, B.Tech CSE, district sports, or reach out instantly &rarr;</p>
+            </div>
+            <button class="dock-launch-btn" aria-label="Open AI Assistant">
+              <i class="fa-solid fa-comments"></i>
+              <span>LAUNCH AI ASSISTANT</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 02: ABOUT ME ==================== -->
+    <section class="page-section section-about" id="sec-about" data-index="1">
+      <div class="cyber-container">
+        
+        <div class="section-title-wrap">
+          <div class="sec-label">
+            <span class="sec-code">02 // DOSSIER</span>
+            <span class="sec-status">IDENTITY MATRIX</span>
+          </div>
+          <h2 class="section-title">ABOUT <span class="gradient-text">ME</span></h2>
+          <p class="section-subtitle">Decoding the programmer behind the terminal &mdash; first-year CSE undergrad at JECRC.</p>
+        </div>
+
+        <!-- Box-Shaped Cards Layout (Strictly No Long Unstructured Paragraphs) -->
+        <div class="about-grid">
+          
+          <!-- Box 1: Core Identity -->
+          <div class="cyber-box about-box hero-card">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            <div class="box-icon-head">
+              <i class="fa-solid fa-fingerprint"></i>
+              <span class="box-cat">PROFILE MATRIX</span>
+            </div>
+            <h3 class="box-heading">18-Year-Old Code Explorer</h3>
+            <p class="box-body">
+              Just an 18-year-old curious builder passionate about figuring out how the digital world operates behind the curtain. Currently a 1st-year <strong>B.Tech Computer Science Engineering</strong> student at <strong>JECRC</strong>, Jaipur.
+            </p>
+            <div class="box-tags">
+              <span class="mini-tag"><i class="fa-solid fa-location-dot"></i> Jaipur, India</span>
+              <span class="mini-tag"><i class="fa-solid fa-seedling"></i> 1st Year Undergrad</span>
+              <span class="mini-tag"><i class="fa-solid fa-check"></i> CBSE 92% Achiever</span>
+            </div>
+          </div>
+
+          <!-- Box 2: The Driving Mission -->
+          <div class="cyber-box about-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            <div class="box-icon-head">
+              <i class="fa-solid fa-compass"></i>
+              <span class="box-cat">OPERATING VISION</span>
+            </div>
+            <h3 class="box-heading">Foundations to AI Systems</h3>
+            <p class="box-body">
+              My immediate objective is mastering core computer science fundamentals &mdash; algorithmic efficiency, C/C++ memory models, and data structures &mdash; while actively deploying modern web technologies and AI developer toolchains.
+            </p>
+            <div class="stat-pills">
+              <div class="stat-pill">
+                <span class="stat-num">C / C++</span>
+                <span class="stat-lbl">Primary Focus</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-num">92%</span>
+                <span class="stat-lbl">Class 12th Board</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-num">AI Tools</span>
+                <span class="stat-lbl">Integrated Workflow</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 3: What I Love Building -->
+          <div class="cyber-box about-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            <div class="box-icon-head">
+              <i class="fa-solid fa-laptop-code"></i>
+              <span class="box-cat">TECH CRAFT</span>
+            </div>
+            <h3 class="box-heading">Practical Creative Engineering</h3>
+            <p class="box-body">
+              I don't just memorize syntax; I test ideas in real projects. From interactive web apps and responsive user interfaces to digital media editing and algorithmic simulations, I turn concepts into executable reality.
+            </p>
+            <ul class="feature-bullets">
+              <li><i class="fa-solid fa-chevron-right"></i> Problem Solving &amp; Analytical Debugging</li>
+              <li><i class="fa-solid fa-chevron-right"></i> Clean Code &amp; Version Control (Git/GitHub)</li>
+              <li><i class="fa-solid fa-chevron-right"></i> High-Speed Touch Typing &amp; Fast Prototyping</li>
+            </ul>
+          </div>
+
+          <!-- Box 4: Long Term Horizon -->
+          <div class="cyber-box about-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            <div class="box-icon-head">
+              <i class="fa-solid fa-crosshairs"></i>
+              <span class="box-cat">TARGET ROADMAP</span>
+            </div>
+            <h3 class="box-heading">Impactful Software Engineer</h3>
+            <p class="box-body">
+              My aspiration is to evolve into a world-class software engineer contributing to high-scale open source repositories, cutting-edge AI product ecosystems, and high-performance computing architectures.
+            </p>
+            <div class="quote-box">
+              <i class="fa-solid fa-quote-left"></i>
+              <span>"Strengthening fundamentals today to architect intelligent systems tomorrow."</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 03: EDUCATION ==================== -->
+    <section class="page-section section-education" id="sec-education" data-index="2">
+      <!-- Blueprint / Paper-Pen Technical Exam Grid Background -->
+      <div class="blueprint-exam-bg" aria-hidden="true">
+        <div class="graph-paper-lines"></div>
+        <div class="exam-stamp">VERIFIED // CBSE 92%</div>
+        <div class="drafting-compass-icon"></div>
+      </div>
+
+      <div class="cyber-container">
+        
+        <div class="section-title-wrap">
+          <div class="sec-label">
+            <span class="sec-code">03 // ACADEMIC BLUEPRINT</span>
+            <span class="sec-status">EXAM RECORDS</span>
+          </div>
+          <h2 class="section-title">ACADEMIC <span class="gradient-text">EDUCATION</span></h2>
+          <p class="section-subtitle">Short, clean, and disciplined &mdash; built on strong analytical and mathematical rigor.</p>
+        </div>
+
+        <!-- Clean Box Shape Cards for Education -->
+        <div class="education-grid">
+          
+          <!-- Box 1: B.Tech CSE (Current) -->
+          <div class="cyber-box edu-box active-edu">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            
+            <div class="edu-header">
+              <div class="edu-badge-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="edu-meta">
+                <span class="edu-period">2025 &mdash; 2029 // PURSUING</span>
+                <span class="status-pill current"><span class="blink"></span> 1ST YEAR CSE</span>
+              </div>
+            </div>
+
+            <h3 class="edu-degree">B.Tech in Computer Science &amp; Engineering</h3>
+            <h4 class="edu-inst"><i class="fa-solid fa-building-columns"></i> JECRC, Jaipur</h4>
+            
+            <p class="edu-desc">
+              Focusing on Data Structures, C/C++ Programming, Computational Mathematics, and Object-Oriented Design. Active in campus tech communities and hackathon circles.
+            </p>
+
+            <div class="edu-highlights">
+              <span class="hl-chip"><i class="fa-solid fa-check-double"></i> C &amp; C++ Core</span>
+              <span class="hl-chip"><i class="fa-solid fa-check-double"></i> Discrete Mathematics</span>
+              <span class="hl-chip"><i class="fa-solid fa-check-double"></i> Web Architecture</span>
+            </div>
+          </div>
+
+          <!-- Box 2: 12th Board CBSE (Highlighted 92%) -->
+          <div class="cyber-box edu-box board-exam-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            
+            <div class="edu-header">
+              <div class="edu-badge-icon exam-pen">
+                <i class="fa-solid fa-pen-fancy"></i>
+              </div>
+              <div class="edu-meta">
+                <span class="edu-period">CBSE BOARD SENIOR SECONDARY</span>
+                <span class="status-pill score-highlight">92% DISTINCTION</span>
+              </div>
+            </div>
+
+            <h3 class="edu-degree">Senior Secondary (Class 12th - PCM + CS)</h3>
+            <h4 class="edu-inst"><i class="fa-solid fa-school"></i> Central Board of Secondary Education (CBSE)</h4>
+            
+            <p class="edu-desc">
+              Successfully completed 12th Board examinations with an outstanding <strong>92% aggregate</strong>, displaying deep proficiency in Physics, Chemistry, Mathematics, and Computer Science.
+            </p>
+
+            <div class="exam-metrics-row">
+              <div class="metric-item">
+                <span class="metric-num">92%</span>
+                <span class="metric-lbl">Aggregate Score</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-num">PCM</span>
+                <span class="metric-lbl">Analytical Core</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-num">A1</span>
+                <span class="metric-lbl">Excellence Tier</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 3: Academic Foundation & Olympiads -->
+          <div class="cyber-box edu-box foundation-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            
+            <div class="edu-header">
+              <div class="edu-badge-icon">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div class="edu-meta">
+                <span class="edu-period">FOUNDATIONAL MILESTONES</span>
+                <span class="status-pill">STEM BASE</span>
+              </div>
+            </div>
+
+            <h3 class="edu-degree">Secondary Schooling &amp; Olympiad Exams</h3>
+            <h4 class="edu-inst"><i class="fa-solid fa-certificate"></i> CBSE Board &amp; Competitive Forums</h4>
+            
+            <p class="edu-desc">
+              Established a strong foundation in logical reasoning, mathematics, and science competitions with consistent academic honors throughout school years.
+            </p>
+
+            <div class="edu-highlights">
+              <span class="hl-chip"><i class="fa-solid fa-star"></i> Science Olympiad Participant</span>
+              <span class="hl-chip"><i class="fa-solid fa-star"></i> Mathematics Aptitude</span>
+              <span class="hl-chip"><i class="fa-solid fa-star"></i> School Merit List</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 04: SKILLS ==================== -->
+    <section class="page-section section-skills" id="sec-skills" data-index="3">
+      <div class="cyber-container">
+        
+        <div class="section-title-wrap">
+          <div class="sec-label">
+            <span class="sec-code">04 // CAPABILITY ARSENAL</span>
+            <span class="sec-status">TECH RADAR</span>
+          </div>
+          <h2 class="section-title">SKILLS &amp; <span class="gradient-text">TOOLBASE</span></h2>
+          <p class="section-subtitle">Formatted exclusively in high-tech modular boxes &mdash; no clutter, high signal.</p>
+        </div>
+
+        <!-- Box-Shaped Skill Cards Grid -->
+        <div class="skills-box-grid">
+          
+          <!-- Box 1: C & C++ Programming (Primary Language) -->
+          <div class="cyber-box skill-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="skill-head">
+              <div class="skill-icon-cube c-lang">
+                <i class="fa-solid fa-c"></i>
+              </div>
+              <div class="skill-title-group">
+                <h3 class="skill-box-title">C &amp; C++ Programming</h3>
+                <span class="skill-sub">Low-Level &amp; Problem Solving</span>
+              </div>
+            </div>
+
+            <p class="skill-brief">
+              Actively mastering memory architecture, pointers, dynamic allocation, structures, and object-oriented paradigms in C/C++.
+            </p>
+
+            <div class="tech-meter-wrap">
+              <div class="meter-bar"><div class="meter-fill" style="width: 82%;"></div></div>
+              <div class="meter-info">
+                <span>Pointers &amp; Memory</span>
+                <span class="meter-pct">Learning &amp; Advancing</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <span class="tech-chip"><i class="fa-solid fa-terminal"></i> Pointers</span>
+              <span class="tech-chip"><i class="fa-solid fa-cubes"></i> OOP Concepts</span>
+              <span class="tech-chip"><i class="fa-solid fa-microchip"></i> Memory Mgmt</span>
+            </div>
+          </div>
+
+          <!-- Box 2: HTML & Modern Web Tech -->
+          <div class="cyber-box skill-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="skill-head">
+              <div class="skill-icon-cube web-lang">
+                <i class="fa-brands fa-html5"></i>
+              </div>
+              <div class="skill-title-group">
+                <h3 class="skill-box-title">HTML5 &amp; Web Interface</h3>
+                <span class="skill-sub">Responsive Front-End</span>
+              </div>
+            </div>
+
+            <p class="skill-brief">
+              Proficient in crafting semantic HTML5, modern CSS3 layouts (Grid, Flexbox, Glow effects), and interactive vanilla JavaScript.
+            </p>
+
+            <div class="tech-meter-wrap">
+              <div class="meter-bar"><div class="meter-fill" style="width: 88%;"></div></div>
+              <div class="meter-info">
+                <span>Semantic &amp; Modern UI</span>
+                <span class="meter-pct">Proficient</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <span class="tech-chip"><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> CSS3 Neon</span>
+              <span class="tech-chip"><i class="fa-brands fa-js"></i> JavaScript</span>
+            </div>
+          </div>
+
+          <!-- Box 3: AI Tools & Modern Workflow -->
+          <div class="cyber-box skill-box ai-highlight">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="skill-head">
+              <div class="skill-icon-cube ai-lang">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <div class="skill-title-group">
+                <h3 class="skill-box-title">AI Toolbases &amp; LLMs</h3>
+                <span class="skill-sub">Augmented Dev Pipeline</span>
+              </div>
+            </div>
+
+            <p class="skill-brief">
+              Leveraging advanced AI tools (ChatGPT, Claude 3.5, GitHub Copilot, Cursor IDE) to accelerate coding, debugging, and ideation.
+            </p>
+
+            <div class="tech-meter-wrap">
+              <div class="meter-bar"><div class="meter-fill" style="width: 90%;"></div></div>
+              <div class="meter-info">
+                <span>Prompt Eng. &amp; Tooling</span>
+                <span class="meter-pct">High Proficiency</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <span class="tech-chip"><i class="fa-solid fa-robot"></i> ChatGPT</span>
+              <span class="tech-chip"><i class="fa-solid fa-microchip"></i> Claude 3.5</span>
+              <span class="tech-chip"><i class="fa-solid fa-code-compare"></i> Copilot</span>
+            </div>
+          </div>
+
+          <!-- Box 4: Developer Tools & Version Control -->
+          <div class="cyber-box skill-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="skill-head">
+              <div class="skill-icon-cube dev-lang">
+                <i class="fa-brands fa-git-alt"></i>
+              </div>
+              <div class="skill-title-group">
+                <h3 class="skill-box-title">Developer Toolchain</h3>
+                <span class="skill-sub">Version Control &amp; Shell</span>
+              </div>
+            </div>
+
+            <p class="skill-brief">
+              Routine use of Git version control, GitHub repository management, VS Code environments, terminal scripts, and command-line tools.
+            </p>
+
+            <div class="tech-meter-wrap">
+              <div class="meter-bar"><div class="meter-fill" style="width: 80%;"></div></div>
+              <div class="meter-info">
+                <span>Git &amp; Environment Setup</span>
+                <span class="meter-pct">Reliable Core</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <span class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git CLI</span>
+              <span class="tech-chip"><i class="fa-brands fa-github"></i> GitHub</span>
+              <span class="tech-chip"><i class="fa-solid fa-code"></i> VS Code</span>
+            </div>
+          </div>
+
+          <!-- Box 5: Creative Media & Editing Tools -->
+          <div class="cyber-box skill-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="skill-head">
+              <div class="skill-icon-cube edit-lang">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+              <div class="skill-title-group">
+                <h3 class="skill-box-title">Media &amp; Editing Tools</h3>
+                <span class="skill-sub">Visual Asset Creation</span>
+              </div>
+            </div>
+
+            <p class="skill-brief">
+              Skilled in digital editing platforms, video production tools, graphic design suites, and UI asset preparation.
+            </p>
+
+            <div class="tech-meter-wrap">
+              <div class="meter-bar"><div class="meter-fill" style="width: 85%;"></div></div>
+              <div class="meter-info">
+                <span>Video &amp; Graphic Suites</span>
+                <span class="meter-pct">Skilled Creator</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <span class="tech-chip"><i class="fa-solid fa-photo-film"></i> Video Editing</span>
+              <span class="tech-chip"><i class="fa-solid fa-image"></i> Graphic Design</span>
+              <span class="tech-chip"><i class="fa-solid fa-crop-simple"></i> UI Assets</span>
+            </div>
+          </div>
+
+          <!-- Box 6: Professional Typing & Speed -->
+          <div class="cyber-box skill-box pro-typing">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="skill-head">
+              <div class="skill-icon-cube type-lang">
+                <i class="fa-solid fa-keyboard"></i>
+              </div>
+              <div class="skill-title-group">
+                <h3 class="skill-box-title">Professional Typing</h3>
+                <span class="skill-sub">Touch Typing Speed &amp; Accuracy</span>
+              </div>
+            </div>
+
+            <p class="skill-brief">
+              Certified touch typist with rapid words-per-minute throughput and top-tier accuracy for effortless code generation.
+            </p>
+
+            <div class="typing-speed-badge">
+              <div class="speed-col">
+                <span class="wpm-val">75+</span>
+                <span class="wpm-lbl">Words / Min</span>
+              </div>
+              <div class="speed-divider"></div>
+              <div class="speed-col">
+                <span class="wpm-val">98%</span>
+                <span class="wpm-lbl">Accuracy</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <span class="tech-chip"><i class="fa-solid fa-bolt"></i> High WPM</span>
+              <span class="tech-chip"><i class="fa-solid fa-bullseye"></i> 10-Finger Touch</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 05: CERTIFICATIONS & ACHIEVEMENTS ==================== -->
+    <section class="page-section section-certifications" id="sec-certifications" data-index="4">
+      <div class="cyber-container">
+        
+        <div class="section-title-wrap">
+          <div class="sec-label">
+            <span class="sec-code">05 // MERIT VAULT</span>
+            <span class="sec-status">SPORTS &amp; CERTIFICATES</span>
+          </div>
+          <h2 class="section-title">CERTIFICATIONS &amp; <span class="gradient-text">ACHIEVEMENTS</span></h2>
+          <p class="section-subtitle">District level athletics, competitive olympiads, and technical certifications.</p>
+        </div>
+
+        <!-- SUBSECTION A: HOBBIES & DISTRICT ATHLETICS (As specified: Badminton & Cricket) -->
+        <div class="sub-category-header">
+          <i class="fa-solid fa-medal"></i>
+          <span>PART 1 // ATHLETIC ACHIEVEMENTS &amp; HOBBIES (DISTRICT LEVEL)</span>
+        </div>
+
+        <div class="achieve-grid sports-grid">
+          
+          <!-- Badminton District Card -->
+          <div class="cyber-box achieve-box sports-card">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            
+            <div class="achieve-top">
+              <div class="achieve-badge badminton-badge">
+                <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+              </div>
+              <div class="achieve-level-pill">
+                <i class="fa-solid fa-award"></i> DISTRICT LEVEL
+              </div>
+            </div>
+
+            <h3 class="achieve-title">Badminton Competitor &mdash; District Level</h3>
+            <span class="achieve-sub">Athletic Discipline &bull; Reflex Training &bull; Strategy</span>
+            
+            <p class="achieve-desc">
+              Competed in district-level badminton tournaments. Developed lightning-fast reflexes, court vision, stamina, and mental composure under high-pressure competitive match points.
+            </p>
+
+            <div class="sports-meta-footer">
+              <span class="meta-tag"><i class="fa-solid fa-fire"></i> District Athlete</span>
+              <span class="meta-tag"><i class="fa-solid fa-bolt"></i> Agility &amp; Strategy</span>
+            </div>
+          </div>
+
+          <!-- Cricket District Card -->
+          <div class="cyber-box achieve-box sports-card">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+            
+            <div class="achieve-top">
+              <div class="achieve-badge cricket-badge">
+                <i class="fa-solid fa-baseball-bat-ball"></i>
+              </div>
+              <div class="achieve-level-pill">
+                <i class="fa-solid fa-award"></i> DISTRICT LEVEL
+              </div>
+            </div>
+
+            <h3 class="achieve-title">Cricket Athlete &mdash; District Level</h3>
+            <span class="achieve-sub">Team Synergy &bull; Strategic Execution &bull; Focus</span>
+            
+            <p class="achieve-desc">
+              Represented at the district tournament level in cricket. Honed teamwork, on-field communication, situational strategy, and discipline &mdash; principles directly applied to software engineering teams.
+            </p>
+
+            <div class="sports-meta-footer">
+              <span class="meta-tag"><i class="fa-solid fa-users"></i> Team Synergy</span>
+              <span class="meta-tag"><i class="fa-solid fa-shield"></i> Match Composure</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SUBSECTION B: ACADEMIC & TECHNICAL CERTIFICATIONS -->
+        <div class="sub-category-header mt-lg">
+          <i class="fa-solid fa-certificate"></i>
+          <span>PART 2 // CERTIFICATIONS &amp; ACADEMIC EXAMINATIONS</span>
+        </div>
+
+        <div class="achieve-grid cert-grid">
+          
+          <!-- Cert 1: CBSE 92% Academic Excellence -->
+          <div class="cyber-box achieve-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="achieve-top">
+              <div class="achieve-badge cert-badge">
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="achieve-level-pill cert-pill">
+                ACADEMIC MERIT
+              </div>
+            </div>
+
+            <h3 class="achieve-title">CBSE 12th Board Academic Distinction</h3>
+            <span class="achieve-sub">Central Board of Secondary Education &bull; 92% Marks</span>
+            
+            <p class="achieve-desc">
+              Awarded certificate of merit for securing 92% aggregate across senior secondary STEM curricula with top grades in Mathematics and Computer Science.
+            </p>
+          </div>
+
+          <!-- Cert 2: Competitive Olympiad Examinations -->
+          <div class="cyber-box achieve-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="achieve-top">
+              <div class="achieve-badge cert-badge">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <div class="achieve-level-pill cert-pill">
+                COMPETITIVE EXAMS
+              </div>
+            </div>
+
+            <h3 class="achieve-title">National Olympiad &amp; Examination Participations</h3>
+            <span class="achieve-sub">Science, Math &amp; Cyber Aptitude Exams</span>
+            
+            <p class="achieve-desc">
+              Active participant in prestigious school and state level talent exams and Olympiads, demonstrating deep analytical aptitude and logical problem solving.
+            </p>
+          </div>
+
+          <!-- Cert 3: C Programming & Foundations -->
+          <div class="cyber-box achieve-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="achieve-top">
+              <div class="achieve-badge cert-badge">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <div class="achieve-level-pill cert-pill">
+                PROGRAMMING
+              </div>
+            </div>
+
+            <h3 class="achieve-title">C &amp; Computational Thinking Coursework</h3>
+            <span class="achieve-sub">Foundations of Algorithms &amp; C Programming</span>
+            
+            <p class="achieve-desc">
+              Completed foundational technical modules on structured programming in C, covering control structures, memory allocations, and fundamental algorithmic logic.
+            </p>
+          </div>
+
+          <!-- Cert 4: AI & Developer Tooling Workshop -->
+          <div class="cyber-box achieve-box">
+            <div class="box-corner tl"></div>
+            <div class="box-corner tr"></div>
+            <div class="box-corner bl"></div>
+            <div class="box-corner br"></div>
+
+            <div class="achieve-top">
+              <div class="achieve-badge cert-badge">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div class="achieve-level-pill cert-pill">
+                AI TOOLBASE
+              </div>
+            </div>
+
+            <h3 class="achieve-title">Modern AI Tools &amp; Prompt Engineering</h3>
+            <span class="achieve-sub">Developer Productivity &amp; Next-Gen Tech</span>
+            
+            <p class="achieve-desc">
+              Hands-on exploration and credentials in utilizing generative AI tools, prompt architecture, and IDE assistants to build robust software faster.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 06: CONTACT ==================== -->
+    <section class="page-section section-contact" id="sec-contact" data-index="5">
+      <div class="cyber-container">
+        
+        <div class="section-title-wrap">
+          <div class="sec-label">
+            <span class="sec-code">06 // COMM TERMINAL</span>
+            <span class="sec-status">SIGNAL ONLINE</span>
+          </div>
+          <h2 class="section-title">TRANSMIT <span class="gradient-text">CONTACT</span></h2>
+          <p class="section-subtitle">Reach out for collaborations, tech projects, or quick tech talk &mdash; transmission channels open.</p>
+        </div>
+
+        <div class="contact-terminal-grid">
+          
+          <!-- Left Column: Direct Info Cards (Gmail, Phone, Socials) -->
+          <div class="contact-info-col">
+            
+            <!-- Email Box with Copy Button -->
+            <div class="cyber-box contact-card">
+              <div class="box-corner tl"></div>
+              <div class="box-corner tr"></div>
+              <div class="box-corner bl"></div>
+              <div class="box-corner br"></div>
+
+              <div class="card-icon-wrap mail">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+
+              <div class="card-details">
+                <span class="card-label">PRIMARY GMAIL</span>
+                <a href="mailto:0008ayushkumar@gmail.com" class="card-value mail-link">0008ayushkumar@gmail.com</a>
+              </div>
+
+              <button class="copy-hud-btn" onclick="copyToClipboard('0008ayushkumar@gmail.com', this)" title="Copy Email">
+                <i class="fa-regular fa-copy"></i>
+                <span>COPY</span>
+              </button>
+            </div>
+
+            <!-- Phone Box with Call/WhatsApp Button -->
+            <div class="cyber-box contact-card">
+              <div class="box-corner tl"></div>
+              <div class="box-corner tr"></div>
+              <div class="box-corner bl"></div>
+              <div class="box-corner br"></div>
+
+              <div class="card-icon-wrap phone">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+
+              <div class="card-details">
+                <span class="card-label">PHONE / WHATSAPP</span>
+                <a href="tel:+917300656743" class="card-value phone-link">+91 7300656743</a>
+              </div>
+
+              <button class="copy-hud-btn" onclick="copyToClipboard('7300656743', this)" title="Copy Phone">
+                <i class="fa-regular fa-copy"></i>
+                <span>COPY</span>
+              </button>
+            </div>
+
+            <!-- Academic Location / Campus Card -->
+            <div class="cyber-box contact-card">
+              <div class="box-corner tl"></div>
+              <div class="box-corner tr"></div>
+              <div class="box-corner bl"></div>
+              <div class="box-corner br"></div>
+
+              <div class="card-icon-wrap loc">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+
+              <div class="card-details">
+                <span class="card-label">LOCATION &amp; CAMPUS</span>
+                <span class="card-value">JECRC, Jaipur, Rajasthan, India</span>
+              </div>
+            </div>
+
+            <!-- Social Links Grid Box -->
+            <div class="cyber-box social-nexus-box">
+              <div class="box-corner tl"></div>
+              <div class="box-corner tr"></div>
+              <div class="box-corner bl"></div>
+              <div class="box-corner br"></div>
+
+              <span class="nexus-title"><i class="fa-solid fa-network-wired"></i> PROFESSIONAL NETWORKS</span>
+
+              <div class="nexus-buttons">
+                <a href="https://github.com/0008ayushkumar" target="_blank" rel="noopener noreferrer" class="nexus-btn github">
+                  <i class="fa-brands fa-github"></i>
+                  <div class="btn-info">
+                    <span class="btn-top">GITHUB REPOSITORIES</span>
+                    <span class="btn-sub">@0008ayushkumar</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-right nexus-arrow"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/ayush-kumar-44a764350/" target="_blank" rel="noopener noreferrer" class="nexus-btn linkedin">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                  <div class="btn-info">
+                    <span class="btn-top">LINKEDIN NETWORK</span>
+                    <span class="btn-sub">Ayush Kumar (JECRC)</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-right nexus-arrow"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive Cyber Message Transmission Console -->
+          <div class="contact-form-col">
+            <div class="cyber-box form-terminal-box">
+              <div class="box-corner tl"></div>
+              <div class="box-corner tr"></div>
+              <div class="box-corner bl"></div>
+              <div class="box-corner br"></div>
+
+              <div class="terminal-bar">
+                <span class="term-dot red"></span>
+                <span class="term-dot yellow"></span>
+                <span class="term-dot green"></span>
+                <span class="term-title">DISPATCH CONSOLE // DIRECT SIGNAL</span>
+              </div>
+
+              <form id="cyber-contact-form" class="cyber-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                  <label for="sender-name"><i class="fa-solid fa-user"></i> YOUR NAME / IDENTITY</label>
+                  <input type="text" id="sender-name" name="name" placeholder="e.g. Alex Rivera" required autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                  <label for="sender-email"><i class="fa-solid fa-at"></i> YOUR EMAIL FREQUENCY</label>
+                  <input type="email" id="sender-email" name="email" placeholder="e.g. alex@company.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                  <label for="msg-subject"><i class="fa-solid fa-tag"></i> SUBJECT PROTOCOL</label>
+                  <input type="text" id="msg-subject" name="subject" placeholder="Project Inquiry / Tech Collaboration" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="msg-content"><i class="fa-solid fa-message"></i> TRANSMISSION PAYLOAD</label>
+                  <textarea id="msg-content" name="message" rows="4" placeholder="Write your message or project ideas here..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-signal-btn" id="submit-signal-btn">
+                  <span class="btn-glow-pulse"></span>
+                  <i class="fa-solid fa-satellite-dish"></i>
+                  <span class="send-text">TRANSMIT SIGNAL</span>
+                </button>
+              </form>
+
+              <!-- Live Submission Feedback Banner -->
+              <div id="form-feedback" class="form-feedback-hud" aria-live="polite"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===============================================================
+       AI CHATBOT MODAL INTERFACE ("A.Y.U.S.H. CORE")
+       =============================================================== -->
+  <div id="chatbot-modal-overlay" class="chatbot-modal-overlay" aria-hidden="true">
+    <div class="chatbot-window">
+      <!-- Chatbot Header -->
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <div class="ai-avatar-badge">
+            <i class="fa-solid fa-robot"></i>
+            <span class="live-beacon"></span>
+          </div>
+          <div class="chat-titles">
+            <span class="ai-name">A.Y.U.S.H. CORE</span>
+            <span class="ai-status">AI COPILOT // ONLINE &bull; READY</span>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button class="chat-ctrl-btn" onclick="clearChatHistory()" title="Clear Chat History">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <button class="chat-ctrl-btn close-chat" onclick="closeChatbotModal()" title="Close Assistant">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Suggestion Query Chips -->
+      <div class="chat-quick-queries">
+        <button class="quick-chip" onclick="sendQuickQuery('What are Ayush\'s primary skills?')">💻 Skills &amp; Tech Stack</button>
+        <button class="quick-chip" onclick="sendQuickQuery('Tell me about Ayush\'s education and 12th board score')">🎓 92% Board &amp; JECRC</button>
+        <button class="quick-chip" onclick="sendQuickQuery('What are his district level achievements?')">🏸 Badminton &amp; Cricket</button>
+        <button class="quick-chip" onclick="sendQuickQuery('How do I contact Ayush?')">✉️ Contact &amp; Phone</button>
+      </div>
+
+      <!-- Messages Body -->
+      <div class="chat-body" id="chat-messages-body">
+        <!-- Initial Welcome Message from AI -->
+        <div class="chat-msg ai-msg">
+          <div class="msg-avatar"><i class="fa-solid fa-microchip"></i></div>
+          <div class="msg-bubble">
+            <div class="msg-meta">A.Y.U.S.H. CORE &bull; SYSTEM PROMPT</div>
+            <p>Greetings! I am the portfolio AI Copilot for <strong>Ayush Kumar</strong> &mdash; 1st-year B.Tech CSE student at JECRC. Ask me anything about his technical stack, district sports, 92% CBSE board score, or contact info!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input Field -->
+      <div class="chat-input-row">
+        <input type="text" id="chat-user-input" placeholder="Type your query or choose an option above..." onkeydown="handleChatInputKey(event)">
+        <button id="chat-send-btn" onclick="sendUserMessage()" aria-label="Send query">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sound Audio Feedback Elements / Web Audio API Synth Handled in script.js -->
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
